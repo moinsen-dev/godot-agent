@@ -69,8 +69,8 @@ the bottleneck.
 
 ## Install
 
-```bash
-/plugin marketplace add /path/to/godot_marketplace
+```
+/plugin marketplace add moinsen-dev/godot-agent
 ```
 
 Then install the `godot` plugin from `/plugin`, and in your game project:
