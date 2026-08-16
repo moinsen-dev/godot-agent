@@ -149,6 +149,36 @@ paths — those break every time the tree is rearranged. Never reach upward with
 `is_instance_valid(node)` before touching a reference you have held across
 frames.
 
+## Silent failures worth knowing
+
+These produce no error, no warning and no log line — the only way to catch them
+is to measure the result.
+
+**`AudioStreamWAV.loop_end` counts frames, and 0 means a zero-length loop.**
+Setting `loop_mode = LOOP_FORWARD` and leaving `loop_end` at its default gives a
+loop region of nothing: playback ends instantly, `playing` reads `false`, and a
+`finished`-handler that restarts it spins forever. Set it explicitly:
+
+```gdscript
+w.loop_end = int(w.get_length() * w.mix_rate)
+```
+
+`AudioStreamMP3` and `AudioStreamOggVorbis` use a plain `loop = true` instead.
+
+**`set_script(null)` succeeds.** `load()` returns null on a parse error, so a
+builder that does not check produces a scene with no script attached — and
+`godot_check` then passes, because nothing references the broken script any
+more. See `godot-scene-authoring`.
+
+**Verify audio from the outside** rather than trusting that `play()` was called:
+
+```gdscript
+AudioServer.get_bus_peak_volume_left_db(AudioServer.get_bus_index("SFX"), 0)
+```
+
+Read it through `godot_eval` before and after triggering a sound. Silence sits
+around −200 dB, so the difference is unambiguous.
+
 ## When you are unsure about an API
 
 Do not guess a method name from memory. Any of these is cheaper than a wrong
