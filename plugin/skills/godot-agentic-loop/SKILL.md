@@ -58,6 +58,25 @@ InputMap, which drives both the `_input()` path and `Input.is_action_pressed()`.
 If an action does nothing, check first that it exists in the InputMap; the tool
 tells you when it does not.
 
+**A default action injection is a *tap*, not a hold.** `godot_input` with
+`kind: "action"` presses and releases one frame apart. Any game with variable
+jump height — `if event.is_action_released("jump"): velocity.y *= 0.45` — will
+therefore produce its *shortest possible* jump, and every measurement you take
+is of a mechanic the player never uses.
+
+Measured on a real platformer with this plugin: tap reached **17.1 px**, hold
+reached **96.1 px**. Same code, same frame, 5.6× apart. Pass `hold: true` and
+release later when the input is meant to be held:
+
+```
+godot_input {kind: "action", action: "jump", hold: true}
+… wait or step frames …
+godot_input {kind: "action", action: "jump", pressed: false}
+```
+
+The same applies to holding a movement direction while testing anything about
+momentum or acceleration.
+
 **`await` in a `_ready()` you never reach.** If the scene tree looks wrong, get
 the truth from `godot_tree` rather than from the `.tscn` file. What is in the
 file and what is in the running tree are different questions.

@@ -146,6 +146,26 @@ by `uid://` in scene files. They are generated and maintained by the engine.
   outside the editor, run `godot_check` afterwards — broken references show up as
   load errors there.
 
+## Guard every load() in a builder
+
+`load()` returns `null` when a script fails to parse, and `set_script(null)`
+**succeeds silently**. The scene then saves, the builder prints success, and the
+failure only surfaces much later as "the scene does exactly nothing".
+
+Worse, `godot_check` will pass — nothing references the broken script any more,
+because the reference was dropped.
+
+```gdscript
+func _must_load(path: String) -> Script:
+	var script: Script = load(path)
+	if script == null:
+		push_error("could not load %s — fix its parse errors first" % path)
+		quit(1)
+	return script
+```
+
+Use it for every script and every resource a builder attaches.
+
 ## After writing a scene
 
 Always `godot_check`. A scene that saved without error can still fail to load —

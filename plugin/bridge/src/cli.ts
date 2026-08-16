@@ -21,7 +21,8 @@ const USAGE = `godot-agent — drive a running Godot game from the outside
 
   click <x> <y> [--step N]  inject a mouse click (--step advances N frames,
   key <keycode> [--step N]    needed while paused: a paused tree drops events)
-  action <name> [--release] press or release an input action
+  action <name> [--hold]    fire an input action; --hold keeps it down until
+                [--release]   the same action is sent with --release
   step [frames]             advance N frames while paused
   pause | resume            freeze / unfreeze the game
 
@@ -50,6 +51,7 @@ async function main() {
       json: { type: "boolean", default: false },
       headless: { type: "boolean", default: false },
       errors: { type: "boolean", default: false },
+      hold: { type: "boolean", default: false },
       release: { type: "boolean", default: false },
       name: { type: "string" },
       path: { type: "string" },
@@ -196,6 +198,7 @@ async function main() {
           kind: "action",
           action: positionals[1],
           pressed: !values.release,
+          hold: Boolean(values.hold),
           step: values.step ? Number(values.step) : 0,
         }, 30000), true);
         break;
