@@ -1,0 +1,38 @@
+{
+  "name": "godot",
+  "version": "0.1.0",
+  "description": "Godot 4 development with a closed feedback loop: run the game, look at it, drive it, read its real errors — plus headless scene authoring and game-design skills for 2D and 3D.",
+  "author": {
+    "name": "moinsen-dev",
+    "url": "https://github.com/moinsen-dev"
+  },
+  "homepage": "https://github.com/moinsen-dev/godot-agent",
+  "license": "MIT",
+  "keywords": [
+    "godot",
+    "godot4",
+    "gdscript",
+    "game-development",
+    "game-design",
+    "game-feel",
+    "game-juice",
+    "juice",
+    "screenshake",
+    "polish",
+    "runtime-bridge",
+    "screenshot",
+    "input-injection",
+    "headless",
+    "scene-authoring",
+    "playtest",
+    "2d",
+    "3d"
+  ],
+  "mcpServers": {
+    "godot": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/bridge/src/mcp.ts"],
+      "description": "Drive a running Godot 4 game — screenshot, scene tree, node get/set/call, expression eval, input injection, frame stepping, error logs, headless check and scene authoring."
+    }
+  }
+}

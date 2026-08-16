@@ -1,0 +1,19 @@
+{
+  "name": "moinsen-godot",
+  "version": "0.1.0",
+  "owner": {
+    "name": "moinsen-dev"
+  },
+  "metadata": {
+    "description": "Godot 4 tooling for Claude Code — a runtime bridge that lets an agent press play, see the running game, drive input and read real errors, plus headless scene authoring and game-design skills.",
+    "homepage": "https://github.com/moinsen-dev/godot-agent"
+  },
+  "plugins": [
+    {
+      "name": "godot",
+      "version": "0.1.0",
+      "source": "./plugin",
+      "description": "Close the loop on Godot 4 development: launch the game, screenshot it, inject input, read script errors with res:// line numbers, step frames deterministically, author scenes headless so Godot serialises the .tscn itself, and design games with version-pinned Godot 4.7 knowledge for both 2D and 3D."
+    }
+  ]
+}

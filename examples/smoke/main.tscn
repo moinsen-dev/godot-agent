@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ig7tw"]
+
+[node name="Main" type="Node2D" unique_id=572398587]
+script = ExtResource("1_ig7tw")
+
+[node name="Box" type="ColorRect" parent="." unique_id=1603038536]
+offset_left = 260.0
+offset_top = 120.0
+offset_right = 380.0
+offset_bottom = 240.0
+pivot_offset = Vector2(60, 60)
+mouse_filter = 2
+color = Color(0.2, 0.6, 1, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1213287148]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
+text = "score 0"

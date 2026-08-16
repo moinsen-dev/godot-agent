@@ -1,0 +1,20 @@
+# Godot
+.godot/
+.import/
+export_presets.cfg
+*.translation
+
+# Agent bridge session state (pid, port, captured logs)
+.godot-agent/
+
+# The example project receives its copy of the addon from `godot-agent setup`.
+# Committing it would duplicate plugin/addon/ and go stale the moment the
+# source addon changes.
+examples/*/addons/
+
+# macOS
+.DS_Store
+
+# Node — the bridge has no dependencies and no build step, but keep these out
+node_modules/
+dist/
