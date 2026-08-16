@@ -185,7 +185,9 @@ Do not guess a method name from memory. Any of these is cheaper than a wrong
 guess:
 
 - `godot_check_script` — parse one file, get the exact error.
-- `godot_eval` against the running game — `Engine`, `Input`, `InputMap`, `Time`,
-  `OS` and `ProjectSettings` are in scope.
+- `godot_eval` against the running game. In scope: `Engine`, `Input`,
+  `InputMap`, `Time`, `OS`, `ProjectSettings`, `DisplayServer`, `AudioServer`,
+  `RenderingServer`, `PhysicsServer2D`. Anything else — including autoloads —
+  has to be reached through the node given as `path`.
 - `godot_get` with no `prop` — dumps every editor-visible property of a live
   node, which settles "what is this property called" instantly.

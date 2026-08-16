@@ -371,8 +371,14 @@ func _cmd_eval(args: Dictionary) -> Variant:
 	# Expression has no access to autoloads or singletons on its own, so hand
 	# the common ones in as named inputs — otherwise `Engine.get_frames_drawn()`
 	# fails with "Invalid named index".
-	var names := PackedStringArray(["Engine", "Input", "InputMap", "Time", "OS", "ProjectSettings", "self"])
-	var inputs: Array = [Engine, Input, InputMap, Time, OS, ProjectSettings, base]
+	var names := PackedStringArray([
+		"Engine", "Input", "InputMap", "Time", "OS", "ProjectSettings",
+		"DisplayServer", "AudioServer", "RenderingServer", "PhysicsServer2D", "self",
+	])
+	var inputs: Array = [
+		Engine, Input, InputMap, Time, OS, ProjectSettings,
+		DisplayServer, AudioServer, RenderingServer, PhysicsServer2D, base,
+	]
 
 	var expr := Expression.new()
 	var err := expr.parse(code, names)

@@ -161,7 +161,7 @@ const TOOLS: Tool[] = [
   {
     name: "godot_eval",
     description:
-      "Evaluate a GDScript expression inside the running game. With `path`, it is evaluated against that node, so `health` or `get_children().size()` work directly. Engine, Input, InputMap, Time, OS and ProjectSettings are in scope.",
+      "Evaluate a GDScript expression inside the running game. With `path`, it is evaluated against that node, so `health` or `get_children().size()` work directly. In scope: Engine, Input, InputMap, Time, OS, ProjectSettings, DisplayServer, AudioServer, RenderingServer, PhysicsServer2D.",
     inputSchema: {
       type: "object",
       properties: {
